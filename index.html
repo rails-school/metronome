@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Metronome</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="metronome.js"></script>
+    <link rel="stylesheet" media="screen" href="metronome.css">
+  </head>
+  <body>
+    <input type="submit" class="speed increase" value="^">
+    <div id="bpm-container">
+      <input id="bpm" value="120">
+      <label for="bpm">bpm</label>
+    </div>
+    <input type="submit" class="speed decrease" value="v">
+    <input type="checkbox" id="play"><label for="play">Play/Pause</label>
+  </body>
+</html>
