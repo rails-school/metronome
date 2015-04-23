@@ -1,26 +1,48 @@
 body {
-  background: #000;
-  margin-left: 20%;
-  margin-right: 20%;
+  background: black;
+  color: #0a83fc;
 }
 
-#bpm-container {
-  border: 1px solid blue;
-  border-radius: 5px;
-  height: 200px;
-}
 #bpm {
-  height: 190px;
-  background: #000;
-  color: white;
-  font-size: 10em;
-  border: 0;
+  font-size: 6em;
+  width: 50%;
+  background: black;
+  border: 1px solid #0a83fc;
+  border-radius: 5px;
+  color: #0a83fc;
+  text-align: center;
+  margin: 8px 0 8px 25%;
+}
+
+.speed {
+  display: block;
   width: 50%;
   margin-left: 25%;
-}
-#bpm-container label {
+  background: #0a83fc;
+  color: black;
+  font-weight: bold;
   font-size: 2em;
-  color: blue;
+  border: 0;
 }
-.speed {
+
+.speed:hover {
+  background: #2ccb1f;
+}
+
+.speed:active {
+  background: black;
+  color: #0a83fc;
+}
+
+#play {
+  display: block;
+  width: 20%;
+  margin-top: 1em;
+  margin-left: 40%;
+  background: #2ccb1f;
+  color: black;
+  font-weight: bold;
+  font-size: 2em;
+  border: 0;
+  border-radius: 5px;
 }

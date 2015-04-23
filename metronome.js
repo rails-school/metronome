@@ -1,77 +1,49 @@
-console.log("This is javascript");
+var Metronome = {
+  playing: false,
 
-var playing = false;
-var audioContext;
+  bpm: function() {
+    return parseInt($("#bpm").val());
+  },
 
-function changeSpeed(event) {
-    if ($(event.target).hasClass("increase")) {
-        increaseSpeed(5);
-    } else if ($(event.target).hasClass("decrease")) {
-        increaseSpeed(-5);
+  changeSpeed: function(delta) {
+    $("#bpm").val(Metronome.bpm() + delta);
+  },
+
+  increase: function() {
+    Metronome.changeSpeed(5);
+  },
+
+  decrease: function() {
+    Metronome.changeSpeed(-5);
+  },
+
+
+
+  play: function() {
+    if (Metronome.playing) {
+      $("#play").val("Play");
+      Metronome.playing = false;
     } else {
-        console.dir(event);
-        console.log("Oops! We triggered this function from the wrong event!");
+      $("#play").val("Pause");
+      Metronome.playing = true;
+      Metronome.click();
     }
-}
+  },
 
-function increaseSpeed(delta) {
-    var bpmInput = $("#bpm");
-    bpmInput.val(parseInt(bpmInput.val()) + delta);
-}
-
-function play() {
-    if (playing) {
-        playing = false;
-    } else {
-        playing = true;
-        beat();
+  click: function() {
+    if (Metronome.playing) {
+      $("#click")[0].play();
+      console.log("Click!");
+      var msPerBeat = 60*1000 / Metronome.bpm();
+      setTimeout(Metronome.click, msPerBeat);
     }
-}
-function beat() {
-    var bpm = parseInt($("#bpm").val());
-    click();
-    var millisecondsToNextBeat = 60*1000 / bpm;
-
-    if (playing) {
-        setTimeout(beat, millisecondsToNextBeat);
-    }
-}
-function click() {
-    console.log("Click!");
-    var oscillator = audioContext.createOscillator();
-    oscillator.frequency.value = 440;
-    oscillator.type = "triangle";
-    oscillator.connect(audioContext.destination);
-    oscillator.start(0);
-    setTimeout(function() {
-        oscillator.stop(0)
-    }, 100);
-}
-
-function pause() {
-    playing = false;
+  }
 }
 
 
-function initAudio() {
-    try {
-        audioContext = new (window.AudioContext || window.webkitAudioContext);
-    } catch (e) {
-        alert('No web audio oscillator support in this browser');
-    }
-}
-
-/*
-   This is jquery's way of saying,
-   run this code when the page has loaded
-*/
+// on document ready
 $(function() {
-    $("#play")
-        .button()
-        .click(play);
-    $(".speed")
-        .button()
-        .click(changeSpeed);
-    $("#bpm").prop('disabled', true);
-    initAudio();
+  $("#increase").click(Metronome.increase);
+  $("#decrease").click(Metronome.decrease);
+  $("#play").click(Metronome.play);
 });
